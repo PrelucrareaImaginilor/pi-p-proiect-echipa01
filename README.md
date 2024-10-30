@@ -1,5 +1,7 @@
 # Recunoașterea și imitarea emoțiilor de către robotul NAO
 
+## analiza literaturii de specialitate din ultimii 5 ani
+
 | Nr. | Autor(i) / An | Titlul articolului / proiectului | Aplicație / Domeniu<sup>1</sup> | Tehnologii utilizate<sup>2</sup> | Metodologie / Abordare<sup>3</sup> | Rezultate<sup>4</sup> | Limitări<sup>5</sup> | Comentarii suplimentare<sup>6</sup> |
 |-----|---------------|----------------------------------|----------------------------------|----------------------------------|-------------------------------------|------------------------|------------------------|--------------------------------------|
 | 1   | Chiara Filippini , David Perpetuini , Daniela Cardone, Arcangelo Merla (2021) | *Improving Human–Robot Interaction by Enhancing NAO Robot Awareness of Human Facial Expression* | recunoaștere facială, interacțiune om-robot, machine learning, afectiv computing | Robot NAO, CNN, OpenCV, FaceReader7 | Utilizare și extindere a modelului CNN pentru detectarea expresiilor faciale | Acuratețe de 91% pentru "fericit", 90% pentru "trist", 75% pentru "surprins" și "speriat" | Acuratețe scăzută pentru expresiile "neutru" și "furios"; sensibilitate la iluminat și orientarea feței | Studiul îmbunătățește detectarea emoțiilor pentru a crea o interacțiune mai naturală cu robotul NAO |
@@ -12,7 +14,7 @@
 
 ![schema bloc](diagram.png)
 
-# Bilbiografie
+## Bilbiografie
 <sup>1</sup> https://www.mdpi.com/1424-8220/21/19/6438
 
 <sup>2</sup> https://link.springer.com/article/10.1007/s42452-020-2234-1
