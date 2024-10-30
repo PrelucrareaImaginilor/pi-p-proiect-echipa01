@@ -10,7 +10,6 @@ Analiza literaturii de specialitate (articole, aplicații, proiecte) din ultimii
 | 4   |Katrin D. Bartl-Pokorny, Małgorzata Pykala, Pinar Uluer, Duygun Erol Barkana, Alice Baird, Hatice Kose, Tatjana Zorcec, Ben Robins, Björn W. Schuller și Agnieszka Landowska(2024)|Robot-Based Intervention for Children With Autism Spectrum Disorder: A Systematic Literature Review | Recunoaștere facială, interacțiune om-robot | Robot NAO, senzori(RGB-D, Kinect) |Testarea roboților interactivi (precum NAO) în dezvoltarea unor sisteme de terapie ce pot îmbunătăți abilitățile sociale și emoționale ale copiilor cu ASD | Utilizarea pe scară largă a roboților NAO în comunicarea dintre terapeuți și copiii cu ASD. Copiii au demonstrat îmbunătățiri în recunoașterea emoțiilor de bază, precum fericire, tristețe, frică și furie, atunci când au interacționat cu NAO | Capacitatea limitată a lui NAO de a gestiona abordări personalizate, de a diferenția emoțiile copiilor |                                      |
 | 5   |  |  |  |  |  |  |  |  |
 
-
 <sup>1</sup> Domeniul în care se aplică soluția descrisă (e.g., recunoașterea facială, realitate augmentată).
 
 <sup>2</sup> Tehnologii utilizate (e.g., Python, TensorFlow, etc.).
@@ -22,3 +21,8 @@ Analiza literaturii de specialitate (articole, aplicații, proiecte) din ultimii
 <sup>5</sup> Limitări (descrierea limitărilor studiului sau soluției).
 
 <sup>6</sup> Comentarii suplimentare (orice informație adițională relevantă).
+
+# Bilbiografie
+https://www.mdpi.com/1424-8220/21/19/6438
+https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9635826
+
