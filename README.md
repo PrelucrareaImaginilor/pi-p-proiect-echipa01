@@ -8,6 +8,10 @@
 | 4   |Katrin D. Bartl-Pokorny, Małgorzata Pykala, Pinar Uluer, Duygun Erol Barkana, Alice Baird, Hatice Kose, Tatjana Zorcec, Ben Robins, Björn W. Schuller și Agnieszka Landowska(2024)|*Robot-Based Intervention for Children With Autism Spectrum Disorder: A Systematic Literature Review* | Recunoaștere facială, interacțiune om-robot | Robot NAO, senzori(RGB-D, Kinect) |Testarea roboților interactivi (precum NAO) în dezvoltarea unor sisteme de terapie ce pot îmbunătăți abilitățile sociale și emoționale ale copiilor cu ASD | Utilizarea pe scară largă a roboților NAO în comunicarea dintre terapeuți și copiii cu ASD. Copiii au demonstrat îmbunătățiri în recunoașterea emoțiilor de bază, precum fericire, tristețe, frică și furie, atunci când au interacționat cu NAO | Capacitatea limitată a lui NAO de a gestiona abordări personalizate, de a diferenția emoțiile copiilor |                                      |
 | 5   |Silvia Ramis, Jose Maria Buades, Francisco J. Perales(2020) | *Using a Social Robot to Evaluate Facial Expressions in the Wild*  | Recunoaștere facială, interacțiune om-robot, CNN, affective computing | Robot NAO, CNN, arhitecturi VGG, SCAE, DNN | Dezvoltarea unui sistem de interacțiune bazat pe NAO ce folosește CNN pentru recunoașterea expresiilor faciale umane. | Rezultate competitive ale recunoașterii emoțiilor de către NAO în comparație cu cele ale experților din domeniu | Confundarea emoțiilor neutre cu cele de furie, procesor limitat NAO în vederea sarcinilor de procesare pentru interacțiunea fluentă cu utilizatorul |  |
 
+## Schema bloc
+
+![schema bloc](diagram.png)
+
 # Bilbiografie
 <sup>1</sup> https://www.mdpi.com/1424-8220/21/19/6438
 
