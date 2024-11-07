@@ -14,6 +14,9 @@
 
 ![schema bloc](diagram.png)
 
+## Dependinte
+Este folosita o versiune de ubuntu 12 pentru compatibilitate.
+
 ## Bilbiografie
 <sup>1</sup> https://www.mdpi.com/1424-8220/21/19/6438
 
