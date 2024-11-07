@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/vboxuser/Desktop/workdir2/test01/main.cpp
+onchargingdetection.h
+/home/vboxuser/Desktop/workdir2/test01/onchargingdetection.h
+qi/applicationsession.hpp
+-
+
+/home/vboxuser/Desktop/workdir2/test01/onchargingdetection.cpp
+onchargingdetection.h
+/home/vboxuser/Desktop/workdir2/test01/onchargingdetection.h
+
+/home/vboxuser/Desktop/workdir2/test01/onchargingdetection.h
+qi/session.hpp
+-
+qi/anyobject.hpp
+-
+qi/application.hpp
+-
+string
+-
+iostream
+-
+
