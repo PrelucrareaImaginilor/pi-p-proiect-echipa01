@@ -1,1 +1,0 @@
-/home/vboxuser/Desktop/workdir2/test01/build-naoqi-sdk/CMakeFiles/main.dir
