@@ -11,6 +11,17 @@ EmotionDetection::EmotionDetection(qi::SessionPtr Session)
             throw std::runtime_error(std::string("Failed to connect to services: ") + e.what());
         }
 		
+	if (!faceC || !memory || !motion) {
+        	throw std::runtime_error("One or more services failed to initialize.");
+    	}
+
+	try {
+	    qi::AnyObject peoplePerception = session->service("ALPeoplePerception");
+	    peoplePerception.call<void>("resetPopulation"); 
+	} catch (const std::exception& e) {
+	    std::cerr << "ALPeoplePerception service is not available: " << e.what() << std::endl;
+	}
+
 	emotions = {"neutral", "happy", "surprised", "angry", "sad"};
 
 	parameters["neutral"] = true;
@@ -46,9 +57,14 @@ void EmotionDetection::startEmotionDetection(){
 	std::array<float, 5> recognized;
 	while(isRunning){
 		if(counter<4){
-			ids = memory.call<std::vector<int>>("getData", "PeoplePerception/PeopleList");
+			try {
+			    	ids = memory.call<std::vector<int>>("getData", "PeoplePerception/PeopleList");
+			} catch (const std::exception& e) {
+			    	std::cerr << "Failed to retrieve PeopleList: " << e.what() << std::endl;
+			}
+
 			if(ids.empty()){
-				std::cout<<"No face detected"<<std::endl;
+				//std::cout<<"No face detected"<<std::endl;
 				//searchForFaces
 			}
 			else if(ids.size()>1){
@@ -56,11 +72,24 @@ void EmotionDetection::startEmotionDetection(){
 				//add a queue
 			}
 			else{
-				faceC.call<void>("analyzeFaceCharacteristics", ids[0]);
+
+				try {
+				    faceC.call<void>("analyzeFaceCharacteristics", ids[0]);
+				} catch (const std::exception& e) {
+				    std::cerr << "Failed to analyze face characteristics for person ID " << ids[0]
+					      << ": " << e.what() << std::endl;
+				    continue;
+				}
 
 				qi::os::sleep(1);
 				
-				properties = memory.call<std::vector<float>>("getData", "PeoplePerception/Person/" + std::to_string(ids[0]) + "/ExpressionProperties");
+				try{
+					properties = memory.call<std::vector<float>>("getData", "PeoplePerception/Person/" + std::to_string(ids[0]) + "/ExpressionProperties");
+				} catch(const std::exception& e) {
+				    std::cerr << "Failed to analyze get expression properties for person ID " << ids[0]
+					      << ": " << e.what() << std::endl;
+				    continue;
+				}
 
 				for(size_t i=0; i<properties.size(); i++){
 					recognitionValues[i] += properties[i];
@@ -69,6 +98,7 @@ void EmotionDetection::startEmotionDetection(){
 			}
 		}
 		else{
+
 			recognized.fill(0);
 			for(auto& reco : recognitionValues) reco /= activeEmotions;
 			
@@ -88,6 +118,8 @@ void EmotionDetection::startEmotionDetection(){
 			    auto max_it = std::max_element(recognized.begin(), recognized.end());
 			    emotion = emotions[std::distance(recognized.begin(), max_it)];
 			}
+			
+			handleDetectedEmotion(emotion);
 		}
 	}
 
