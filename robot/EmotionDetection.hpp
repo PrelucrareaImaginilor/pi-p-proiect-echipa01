@@ -15,6 +15,7 @@ private:
 	qi::AnyObject memory;
 	qi::AnyObject faceC;
 	qi::AnyObject motion;
+	qi::AnyObject speech;	
 
 	std::map<std::string, bool> parameters;
 	std::map<std::string, float> tresholds;

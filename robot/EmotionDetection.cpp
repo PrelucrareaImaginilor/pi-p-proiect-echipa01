@@ -7,6 +7,7 @@ EmotionDetection::EmotionDetection(qi::SessionPtr Session)
             faceC = session->service("ALFaceCharacteristics");
             memory = session->service("ALMemory");
             motion = session->service("ALMotion");
+	    speech = session->service("ALTextToSpeech");
         } catch (const std::exception& e) {
             throw std::runtime_error(std::string("Failed to connect to services: ") + e.what());
         }
@@ -127,6 +128,8 @@ void EmotionDetection::startEmotionDetection(){
 
 void EmotionDetection::handleDetectedEmotion(const std::string& emotion) {
         std::cout << "Detected emotion: " << emotion << std::endl;
+	std::string phrase= "You are " + emotion; 
+	speech.call<void>("say",phrase);
 }
 
 void EmotionDetection::searchForFace(){
