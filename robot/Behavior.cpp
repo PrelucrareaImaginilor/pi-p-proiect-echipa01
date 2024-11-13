@@ -6,6 +6,11 @@ Behavior::Behavior(qi::SessionPtr Session) :session(Session){
 	} catch(const std::exception &e) {
 		throw std::runtime_error(std::string("Failed to connect to service: ") + e.what());
 	}
+	behaviors["neutral"] = "animations/Stand/Emotions/Neutral/Hello_1";
+	behaviors["happy"] = "animations/Stand/Emotions/Positive/Mocker_1";
+	behaviors["surprised"] = "animations/Stand/Emotions/Negative/Surprise_1";
+	behaviors["angry"] = "animations/Stand/Emotions/Negative/Angry_2";
+	behaviors["sad"] = "animations/Stand/Emotions/Negative/Bored_1";
 }
 
 void Behavior::listBehaviors(){
@@ -17,9 +22,9 @@ void Behavior::listBehaviors(){
         }
 }
 
-void Behavior::executeAnimation(const std::string& animationName) {
+void Behavior::executeAnimation(const std::string& emotion) {
     try {
-        
+        std::string animationName = behaviors[emotion];
         if (!behavior.call<bool>("isBehaviorInstalled", animationName)) {
             std::cerr << "Behavior " << animationName << " is not installed on the robot." << std::endl;
             return;
@@ -32,9 +37,12 @@ void Behavior::executeAnimation(const std::string& animationName) {
 
         std::cout << "Starting animation: " << animationName << std::endl;
         behavior.call<void>("runBehavior", animationName);
-        
+
+        qi::os::sleep(1);
+
     } catch (const std::exception& e) {
         std::cerr << "Failed to execute animation: " << e.what() << std::endl;
     }
 }
+
 

@@ -25,7 +25,19 @@ set(_srcs
   Behavior.hpp
 )
 
+set(_test
+  test.cpp
+  Behavior.cpp
+  Behavior.hpp
+)
+
+#set(_srcs
+#  test.cpp
+#  Behavior.cpp
+#  Behavior.hpp
+#)
 
 #qi_create_bin(test01 ${_srcs})
 qi_create_bin(main ${_srcs} DEPENDS QI)
-
+#qi_create_test(test_test01 ${_test} DEPENDS QI)
+#qi_create_bin(test ${_srcs} DEPENDS QI)
