@@ -21,6 +21,8 @@ set(_srcs
   main.cpp
   EmotionDetection.cpp
   EmotionDetection.hpp
+  Behavior.cpp
+  Behavior.hpp
 )
 
 
