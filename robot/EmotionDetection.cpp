@@ -8,6 +8,7 @@ EmotionDetection::EmotionDetection(qi::SessionPtr Session)
             memory = session->service("ALMemory");
             motion = session->service("ALMotion");
 	    speech = session->service("ALTextToSpeech");
+	    behavior = new Behavior(session);
         } catch (const std::exception& e) {
             throw std::runtime_error(std::string("Failed to connect to services: ") + e.what());
         }
@@ -37,7 +38,7 @@ EmotionDetection::EmotionDetection(qi::SessionPtr Session)
 	tresholds["happy"] = confidenceTreshold;
 	tresholds["surprised"] = confidenceTreshold;
 	tresholds["angry"] = confidenceTreshold;
-	tresholds["sad"] = confidenceTreshold + 0.1;
+	tresholds["sad"] = confidenceTreshold + 0.05;
 }
 
 void EmotionDetection::setParameter(const std::string& param, float value) {
@@ -130,6 +131,7 @@ void EmotionDetection::handleDetectedEmotion(const std::string& emotion) {
         std::cout << "Detected emotion: " << emotion << std::endl;
 	std::string phrase= "You are " + emotion; 
 	speech.call<void>("say",phrase);
+	behavior->executeAnimation(emotion);
 }
 
 void EmotionDetection::searchForFace(){

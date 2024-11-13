@@ -7,7 +7,7 @@
 #include <vector>
 #include <array>
 #include <map>
-
+#include "Behavior.hpp"
 
 class EmotionDetection{
 private:
@@ -15,7 +15,8 @@ private:
 	qi::AnyObject memory;
 	qi::AnyObject faceC;
 	qi::AnyObject motion;
-	qi::AnyObject speech;	
+	qi::AnyObject speech;
+	Behavior* behavior;	
 
 	std::map<std::string, bool> parameters;
 	std::map<std::string, float> tresholds;
