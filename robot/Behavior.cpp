@@ -1,8 +1,8 @@
 #include "Behavior.hpp"
 
-Behavior::Behavior(qi::SessionPtr Session) :session(Session){
+Behavior::Behavior(boost::shared_ptr<AL::ALBroker> Broker) :broker(Broker){
 	try{
-		behavior = session->service("ALBehaviorManager");
+		behavior = AL::ALBehaviorManagerProxy(broker);
 	} catch(const std::exception &e) {
 		throw std::runtime_error(std::string("Failed to connect to service: ") + e.what());
 	}
@@ -14,29 +14,29 @@ Behavior::Behavior(qi::SessionPtr Session) :session(Session){
 }
 
 void Behavior::listBehaviors(){
-	std::vector<std::string> behaviors = behavior.call<std::vector<std::string>>("getInstalledBehaviors");
+	std::vector<std::string> behaviors = behavior.getInstalledBehaviors();
 
     	std::cout << "Installed Behaviors:" << std::endl;
-        for (const auto& behavior : behaviors) {
-            std::cout << behavior << std::endl;
+        for(int i = 0; i<behaviors.size(); i++) {
+            std::cout << behaviors[i] << std::endl;
         }
 }
 
 void Behavior::executeAnimation(const std::string& emotion) {
     try {
         std::string animationName = behaviors[emotion];
-        if (!behavior.call<bool>("isBehaviorInstalled", animationName)) {
+        if (!behavior.isBehaviorInstalled(animationName)) {
             std::cerr << "Behavior " << animationName << " is not installed on the robot." << std::endl;
             return;
         }
 
-        if (behavior.call<bool>("isBehaviorRunning", animationName)) {
+        if (behavior.isBehaviorRunning(animationName)) {
             std::cerr << "Behavior " << animationName << " is already running." << std::endl;
             return;
         }
 
         std::cout << "Starting animation: " << animationName << std::endl;
-        behavior.call<void>("runBehavior", animationName);
+        behavior.runBehavior(animationName);
 
         qi::os::sleep(1);
 

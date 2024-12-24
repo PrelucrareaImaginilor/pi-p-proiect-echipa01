@@ -1,17 +1,18 @@
 #pragma once
 
-#include <qi/session.hpp>
-#include <qi/anyobject.hpp>
+#include <alcommon/albroker.h>
+#include <alproxies/albehaviormanagerproxy.h>
+#include <qi/os.hpp>
 #include <vector>
 #include <map>
 
 class Behavior{
 private:
-	qi::SessionPtr session;
-	qi::AnyObject behavior;
+	boost::shared_ptr<AL::ALBroker> broker;
+	AL::ALBehaviorManagerProxy behavior;
 	std::map<std::string, std::string> behaviors;
 public:
-	Behavior(qi::SessionPtr Session);
+	Behavior(boost::shared_ptr<AL::ALBroker> Broker);
 	void listBehaviors();
 	void executeAnimation(const std::string& animationName);
 };
