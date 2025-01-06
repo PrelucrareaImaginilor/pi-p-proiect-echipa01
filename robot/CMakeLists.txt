@@ -4,9 +4,14 @@ project(test_atom)
 set(CMAKE_CXX_COMPILER ${CROSS_ATOM}/cross/bin/g++)
 set(CMAKE_C_COMPILER ${CROSS_ATOM}/cross/bin/gcc)
 
-#set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-rpath,${CROSS_ATOM}/libnaoqi/lib")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-rpath-link,${CROSS_ATOM}/libnaoqi/lib")
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+
+set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
+set(BUILD_SHARED_LIBS OFF)
+set(CMAKE_EXE_LINKER_FLAGS "-static")
+
+link_directories(/opt/aldebaran/lib)
+
 
 find_package(qibuild)
 find_package(Boost REQUIRED)
@@ -24,13 +29,9 @@ include_directories(
 link_directories(${CROSS_ATOM}/libnaoqi/lib)
 
 add_definitions(-DBOOST_SIGNALS_NO_DEPRECATION_WARNING)
-#add_definitions(-DBOOST_NO_DEFAULTED_FUNCTIONS=0 -DBOOST_NO_DELETED_FUNCTIONS=0)
-
-#add_definitions(-DBOOST_SIGNALS_NO_DEPRECATION_WARNING -std=c++0x)
-
 
 set(_srcs
-  main.cpp
+  main1.cpp
   EmotionDetection.cpp
   EmotionDetection.hpp
   Behavior.cpp
@@ -46,8 +47,8 @@ target_link_libraries(test_atom
     ${CROSS_ATOM}/libnaoqi/lib/libalcommon.so
     ${CROSS_ATOM}/libnaoqi/lib/libqi.so
     ${CROSS_ATOM}/libnaoqi/lib/libqitype.so
-    ${CROSS_ATOM}/libnaoqi/lib/libboost_system-mt-1_55.so
-    ${CROSS_ATOM}/libnaoqi/lib/libboost_signals-mt-1_55.so.1.55.0
+    #${CROSS_ATOM}/libnaoqi/lib/libboost_system-mt-1_55.so
+    #${CROSS_ATOM}/libnaoqi/lib/libboost_signals-mt-1_55.so.1.55.0
     ${CROSS_ATOM}/libnaoqi/lib/libalvalue.so
     ${CROSS_ATOM}/libnaoqi/lib/libalerror.so
     ${CROSS_ATOM}/libnaoqi/lib/libqimessaging.so
